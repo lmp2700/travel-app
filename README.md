@@ -1,5 +1,5 @@
 # travel-app
-Travel management application that allows you to plan your trip after it has been planned. Input your flight information, hotel information and upload copies of your important documents to store. Specify the dates/days you are traveling as well as the location.
+Travel management application that allows you to plan your trip after it has been booked. Input your flight information, hotel information and upload copies of your important documents to store. Specify the dates/days you are traveling as well as the location.
 
 # login/registration
 Login is required <br/>
@@ -17,7 +17,7 @@ User is allowed to title the trip.<br/>
 
 # edit the trip
 User is allowed to update the trip with hotel & transportation information<br/>
-User is allwed to make notes on each reservation*
+User is allowed to make notes on each reservation*
 
 # delete the trip
 User is allowed to remove the trip from their list of trips
@@ -37,5 +37,5 @@ User is allowed to chat with their friends on the trip with them via a chat feat
 * = outside of scope
 
 # technologies used
-Front end: React w/Redux
-Back end: TBD, still watching Django videos
+Front end: React w/Redux<br/>
+Back end: TBD, still watching Django videos<br/>
