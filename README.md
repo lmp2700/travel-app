@@ -2,7 +2,7 @@
 Travel management application that allows you to plan your trip after it has been planned. Input your flight information, hotel information and upload copies of your important documents to store. Specify the dates/days you are traveling as well as the location.
 
 # login/registration
-Login is required
+Login is required <br/>
 Registration is allowed
 
 # user profile
