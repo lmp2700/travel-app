@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Dashboard from './Containers/DashboardContainer/Dashboard'
 import NavBar from './Containers/DashboardContainer/NavContainer'
+import TripDetails from './Containers/TripsContainer/TripDetailContainer'
+import LoginContainer from './Containers/AuthContainer/LoginContainer'
+import RegisterContainer from './Containers/AuthContainer/RegisterContainer'
+import TripCreate from './Containers/TripsContainer/TripCreateContainer'
 
 class App extends Component {
   render() {
@@ -10,7 +14,11 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <Switch>
-            <Route path="/" component={Dashboard} />
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/trip/:id" component={TripDetails} />
+            <Route path="/login" component={LoginContainer} />
+            <Route path="/register" component={RegisterContainer} />
+            <Route path="/create" component={TripCreate} />
           </Switch>
         </div>
       </BrowserRouter>
