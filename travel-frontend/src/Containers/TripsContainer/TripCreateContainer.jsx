@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createTrip } from '../../store/actions/tripActions';
 
 class CreateTrip extends Component {
     state = {
@@ -12,7 +14,8 @@ class CreateTrip extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        // console.log(this.state)
+        this.props.createTrip(this.state)
     }
     render() {
         return (
@@ -20,11 +23,11 @@ class CreateTrip extends Component {
                 <form className="white" onSubmit={this.handleSubmit}>
                     <h5 className="gray-text text-darken-3">Create a Trip</h5>
                     <div className="input-field">
-                        <label htmlFor="title">Title</label>
+                        <label htmlFor="title">Trip Title</label>
                         <input type="text" id="title" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Trip Information</label>
+                        <label htmlFor="content">Trip Details</label>
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>
                     <div className="input-field">
@@ -35,5 +38,10 @@ class CreateTrip extends Component {
         )
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createTrip: (trip) => dispatch(createTrip(trip))
+    }
+}
 
-export default CreateTrip;
+export default connect(null, mapDispatchToProps)(CreateTrip);
