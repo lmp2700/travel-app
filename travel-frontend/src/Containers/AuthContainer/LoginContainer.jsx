@@ -1,4 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { logIn } from '../../store/actions/authActions';
+import { Redirect } from 'react-router-dom';
+
 
 class LoginContainer extends Component {
     state = {
@@ -12,9 +16,11 @@ class LoginContainer extends Component {
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.logIn(this.state)
     }
     render() {
+        const { authError, auth } = this.props;
+        if (auth.uid) return <Redirect to='/' />
         return (
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
@@ -29,11 +35,26 @@ class LoginContainer extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0>">Login</button>
+                        <div className="red-text center">
+                            {authError ? <p>{authError}</p> : null}
+                        </div>
                     </div>
                 </form>
             </div>
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth
+    }
+}
 
-export default LoginContainer
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logIn: (creds) => (dispatch(logIn(creds)))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

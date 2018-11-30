@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createTrip } from '../../store/actions/tripActions';
+import { Redirect } from 'react-router-dom';
 
 class CreateTrip extends Component {
     state = {
@@ -16,8 +17,11 @@ class CreateTrip extends Component {
         e.preventDefault();
         // console.log(this.state)
         this.props.createTrip(this.state)
+        this.props.history.push('/');
     }
     render() {
+        const { auth } = this.props
+        if (!auth.uid) return <Redirect to='/login' />
         return (
             <div className="container">
                 <form className="white" onSubmit={this.handleSubmit}>
@@ -38,10 +42,16 @@ class CreateTrip extends Component {
         )
     }
 }
+const mapStateToProps = (state) => {
+    return {
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         createTrip: (trip) => dispatch(createTrip(trip))
     }
 }
 
-export default connect(null, mapDispatchToProps)(CreateTrip);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateTrip);

@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import TripMain from './TripMainContainer'
+import React from 'react';
+import TripMain from './TripMainContainer';
+import { Link } from 'react-router-dom';
 
 
 const TripsList = ({ trips }) => {
@@ -7,7 +8,9 @@ const TripsList = ({ trips }) => {
         <div className="trips-list section">
             {trips && trips.map(trip => {
                 return (
-                    <TripMain trip={trip} key={trip.id} />
+                    <Link to={'/trip/' + trip.id} key={trip.id}>
+                        <TripMain trip={trip} />
+                    </Link>
                 )
             })}
         </div>
