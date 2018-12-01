@@ -19,7 +19,7 @@ const TripDetails = (props) => {
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
                         <div>Posted by {trip.authorFirstName} {trip.authorLastName}</div>
-                        <div>{moment(trip.createdAt).format("dddd, MMMM do YYYY")}</div>
+                        <div>{moment(trip.createdAt.toDate()).format("dddd, MMMM Do YYYY")}</div>
                     </div>
                 </div>
             </div>
