@@ -20,6 +20,17 @@ exports.tripCreated = functions.firestore
             user: `${trip.authorFirstName} ${trip.authorLastName}`,
             time: admin.firestore.FieldValue.serverTimestamp()
         }
-        return createNotification(notification)
+        return createNotification(notification);
     })
 
+exports.userJoined = functions.auth.user().onCreate(user => {
+    return admin.firestore().collection('users').doc(user.uid).get().then(doc => {
+        const newUser = doc.data();
+        const notification = {
+            content: 'Joined TripApp',
+            user: `${newUser.firstName} ${newUser.lastName}`,
+            time: admin.firestore.FieldValue.serverTimestamp()
+        }
+        return createNotification(notification);
+    })
+})
