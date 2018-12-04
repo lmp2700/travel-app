@@ -6,6 +6,8 @@ import TripDetails from './Containers/TripsContainer/TripDetailContainer'
 import LoginContainer from './Containers/AuthContainer/LoginContainer'
 import RegisterContainer from './Containers/AuthContainer/RegisterContainer'
 import TripCreate from './Containers/TripsContainer/TripCreateContainer'
+import UserEdit from './Containers/UserContainer/UserEditContainer'
+import TripEdit from './Containers/TripsContainer/TripEditContainer'
 
 class App extends Component {
   render() {
@@ -19,6 +21,8 @@ class App extends Component {
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
             <Route path="/create" component={TripCreate} />
+            <Route path="/user/edit" component={UserEdit} />
+            <Route path="/edit" component={TripEdit} />
           </Switch>
         </div>
       </BrowserRouter>

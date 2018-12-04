@@ -31,6 +31,14 @@ class CreateTrip extends Component {
                         <input type="text" id="title" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
+                        <label htmlFor="content">Trip Location</label>
+                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
+                    </div>
+                    <div className="calendar">
+                        <label htmlFor="content">Trip Start Date</label>
+                        <input type="date" value="2019-01-01" min="none" max="none"></input>
+                    </div>
+                    <div className="input-field">
                         <label htmlFor="content">Trip Details</label>
                         <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
                     </div>

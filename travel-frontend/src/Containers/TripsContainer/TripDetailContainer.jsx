@@ -4,7 +4,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
-
+// import EditTrip from './TripEditContainer'
 
 // The behavior for Date objects stored in Firestore is going to change
 // AND YOUR APP MAY BREAK.
@@ -29,10 +29,18 @@ import moment from 'moment';
 // future release, the behavior will change to the new behavior, so if you do not
 // follow these steps, YOUR APP MAY BREAK.
 
+// <EditTrip deleteTrip={this.deleteTrip} /> 
+// <button onClick={this.props.editTrip.bind(null, this.props.trip_id)}>Edit Trip</button> &nbsp;
+// <button onClick={this.props.deleteComment.bind(null, this.props.trip_id)}>Delete Trip</button>
+
 const TripDetails = (props) => {
     const { trip, auth } = props;
     if (!auth.uid) return <Redirect to='/login' />
     // console.log(props)
+    // onSubmit = (e) => {
+    //     e.preventDefault();
+    //     console.log('edit button')
+    // }
     if (trip) {
         return (
             <div className="container section trip-details">
@@ -44,6 +52,10 @@ const TripDetails = (props) => {
                     <div className="card-action grey lighten-4 grey-text">
                         <div>Posted by {trip.authorFirstName} {trip.authorLastName}</div>
                         <div>{moment(trip.createdAt.toDate()).format("dddd, MMMM Do YYYY")}</div>
+                    </div>
+                    <div className="buttons">
+                        <button className="waves-effect waves-light btn">Edit</button> &nbsp;
+                        <button className="waves-effect waves-light btn">Delete</button>
                     </div>
                 </div>
             </div>
