@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -10,16 +10,15 @@ import moment from 'moment';
 // <EditTrip deleteTrip={this.deleteTrip} /> 
 // <button onClick={this.props.editTrip.bind(null, this.props.trip_id)}>Edit Trip</button> &nbsp;
 // <button onClick={this.props.deleteComment.bind(null, this.props.trip_id)}>Delete Trip</button>
+// onSubmit = (e) => {
+//     e.preventDefault();
+//     console.log('edit button')
+// }
 
 const TripDetails = (props) => {
     const { trip, auth } = props;
     if (!auth.uid) return <Redirect to='/login' />
-    // console.log(props)
-    // onSubmit = (e) => {
-    //     e.preventDefault();
-    //     console.log('edit button')
-    // }
-    if (trip) {
+    if (trip)
         return (
             <div className="container section trip-details">
                 <div className="card z-depth-0">
@@ -29,26 +28,25 @@ const TripDetails = (props) => {
                         <p>Start Date: {trip.start_date}</p>
                         <p>Trip Details: {trip.content}</p>
                     </div>
-                    <div className="card-action grey lighten-4 grey-text">
-                        <div>Created by {trip.authorFirstName} {trip.authorLastName} on {moment(trip.createdAt.toDate()).format("dddd, MMMM Do YYYY")}</div>
+                    <div className="card-content">
+                        <span className="card-title">Trip Documents</span>
+                        <p>Local Embassy: </p>
+                        <p>Hotel Reservation: </p>
+                        <p>Car Rental: </p>
                     </div>
                     <div className="buttons">
                         <button className="waves-effect waves-light btn">Edit</button> &nbsp;
                         <button className="waves-effect waves-light btn">Delete</button>
                     </div>
+                    <div className="card-action grey lighten-4 grey-text">
+                        <div>Created by {trip.authorFirstName} {trip.authorLastName} on {moment(trip.createdAt.toDate()).format("dddd, MMMM Do YYYY")}</div>
+                    </div>
+
                 </div>
             </div>
         )
-    } else {
-        return (
-            <div className="container center">
-                <p>Loading project...</p>
-            </div>
-        )
-    }
 }
 const mapStateToProps = (state, ownProps) => {
-    // console.log(state)
     const id = ownProps.match.params.id;
     const trips = state.firestore.data.trips;
     const trip = trips ? trips[id] : null
@@ -57,9 +55,4 @@ const mapStateToProps = (state, ownProps) => {
         auth: state.firebase.auth
     }
 }
-export default compose(
-    connect(mapStateToProps),
-    firestoreConnect([
-        { collection: 'trips' }
-    ])
-)(TripDetails);
+export default compose(connect(null, mapStateToProps), firestoreConnect([{ collection: 'trips' }]))(TripDetails);

@@ -36,7 +36,7 @@ class EditUser extends Component {
                             <div>Email: <input type="email" placeholder={user} onChange={this.handleChange}></input></div>
                         </div>
                         <div className="buttons">
-                            <button className="waves-effect waves-light btn">Edit Account</button> &nbsp;
+                            <button className="waves-effect waves-light btn">Submit Edit</button> &nbsp;
                             <button className="waves-effect waves-light btn">Delete Account</button>
                         </div>
                     </div>
