@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { compose } from 'redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import { editUser } from '../../store/actions/userActions';
 
-// class editUser extends Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             firstName: '',
-//             lastName: '',
-//             email: ''
-//         }
-//     }
-//     render() {
-const editUser = (props) => {
-    const { user, auth } = this.props;
-    if (!auth.uid) return <Redirect to='/login' />
 
-    if (user) {
+class EditUser extends Component {
+    constructor() {
+        super();
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: ''
+        }
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.currentTarget.id]: e.currentTarget.value
+        })
+    }
+    render() {
+        const { user, auth } = this.props;
+        if (!auth.uid) return <Redirect to='/login' />
         return (
             <div>
                 <div className="container section trip-details">
@@ -27,26 +31,22 @@ const editUser = (props) => {
                             <span className="card-title">Edit Profile</span>
                         </div>
                         <div className="card-action grey lighten-4 grey-text">
-                            <div>{user.firstName}: </div>
-                            <div>{user.lastName}: </div>
-                            <div>{user.email}: </div>
+                            <div>First Name: <input type="text" placeholder={user} onChange={this.handleChange}></input></div>
+                            <div>Last Name: <input type="text" placeholder={user} onChange={this.handleChange}></input></div>
+                            <div>Email: <input type="email" placeholder={user} onChange={this.handleChange}></input></div>
                         </div>
                         <div className="buttons">
-                            <button className="waves-effect waves-light btn">Edit</button> &nbsp;
+                            <button className="waves-effect waves-light btn">Edit Account</button> &nbsp;
                             <button className="waves-effect waves-light btn">Delete Account</button>
                         </div>
                     </div>
                 </div>
             </div>
         )
-    } else {
-        return (
-            <div className="container center">
-                <p>Unable to Edit Profile Right Now</p>
-            </div>
-        )
     }
 }
+
+
 const mapStateToProps = (state, ownProps) => {
     const id = ownProps.match.params.id;
     const users = state.firestore.data.users;
@@ -56,5 +56,10 @@ const mapStateToProps = (state, ownProps) => {
         auth: state.firebase.auth
     }
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        editUser: (user) => dispatch(editUser(user))
+    }
+}
 
-export default compose(connect(mapStateToProps), firestoreConnect([{ collection: 'users' }]))(editUser);
+export default compose(connect(mapStateToProps, mapDispatchToProps), firestoreConnect([{ collection: 'users' }]))(EditUser);

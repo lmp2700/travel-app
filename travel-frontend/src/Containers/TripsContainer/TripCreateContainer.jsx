@@ -6,7 +6,9 @@ import { Redirect } from 'react-router-dom';
 class CreateTrip extends Component {
     state = {
         title: '',
-        content: ''
+        location: '',
+        start_date: '',
+        details: ''
     }
     handleChange = (e) => {
         this.setState({
@@ -28,19 +30,19 @@ class CreateTrip extends Component {
                     <h5 className="gray-text text-darken-3">Create a Trip</h5>
                     <div className="input-field">
                         <label htmlFor="title">Trip Title</label>
-                        <input type="text" id="title" onChange={this.handleChange} />
+                        <input type="text" id="title" placeholder="" onChange={this.handleChange} />
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Trip Location</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
+                        <label htmlFor="location">Trip Location</label>
+                        <textarea id="location" className="materialize-textarea" placeholder="" onChange={this.handleChange}></textarea>
                     </div>
                     <div className="calendar">
-                        <label htmlFor="content">Trip Start Date</label>
-                        <input type="date" value="2019-01-01" min="none" max="none"></input>
+                        <label htmlFor="start_date">Trip Start Date</label>
+                        <textarea id="start_date" className="materialize-textarea" placeholder="" min="none" max="none"></textarea>
                     </div>
                     <div className="input-field">
                         <label htmlFor="content">Trip Details</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleChange}></textarea>
+                        <textarea id="content" className="materialize-textarea" placeholder="" onChange={this.handleChange}></textarea>
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0>">Create</button>

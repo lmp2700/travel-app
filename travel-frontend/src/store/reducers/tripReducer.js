@@ -22,6 +22,7 @@ const tripReducer = (state = initState, action) => {
         case 'DELETE_TRIP_ERROR':
             console.log('deleted trip error', action.err)
             return state;
+        default: return state;
     }
 }
 

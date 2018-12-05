@@ -38,12 +38,12 @@ class editTrips extends Component {
                         <input type="text" id="title" onChange={this.handleEditChange} />
                     </div>
                     <div className="input-field">
-                        <label htmlFor="content">Trip Location</label>
-                        <textarea id="content" className="materialize-textarea" onChange={this.handleEditChange}></textarea>
+                        <label htmlFor="location">Trip Location</label>
+                        <textarea id="location" className="materialize-textarea" onChange={this.handleEditChange}></textarea>
                     </div>
                     <div className="calendar">
-                        <label htmlFor="content">Trip Start Date</label>
-                        <input type="date" value="2019-01-01" min="none" max="none"></input>
+                        <label htmlFor="start_date">Trip Start Date</label>
+                        <input type="text" className="materialize-textarea" onChange={this.handleEditChange} min="none" max="none"></input>
                     </div>
                     <div className="input-field">
                         <label htmlFor="content">Trip Details</label>
