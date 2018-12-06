@@ -24,7 +24,7 @@ class App extends Component {
             <Route path="/create" component={TripCreate} />
             <Route path="/user" component={UserMain} />
             <Route path="/user/edit" component={UserEdit} />
-            <Route path="/edit" component={TripEdit} />
+            <Route path="/trip/:id/edit" component={TripEdit} />
           </Switch>
         </div>
       </BrowserRouter>

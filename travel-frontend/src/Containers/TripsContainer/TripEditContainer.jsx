@@ -28,6 +28,11 @@ class editTrips extends Component {
         this.props.editTrip(this.state)
         this.props.history.push('/trips');
     }
+    // handleDeleteTrip = (e) => {
+    //     e.preventDefault();
+    //     this.props.deleteTrip(this.state)
+    //     this.props.history.splice('/trips')
+    // }
     render() {
         return (
             <div className="container">
@@ -50,7 +55,8 @@ class editTrips extends Component {
                         <textarea id="content" className="materialize-textarea" onChange={this.handleEditChange}></textarea>
                     </div>
                     <div className="input-field">
-                        <button className="btn pink lighten-1 z-depth-0>">Submit Edit</button>
+                        <button className="btn pink lighten-1 z-depth-0>">Submit Edit</button> &nsbp;
+                        <button className="waves-effect waves-light btn" onSubmit={this.handleDeleteTrip}>Delete Trip</button>
                     </div>
                 </form>
             </div>
