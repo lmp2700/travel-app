@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -40,8 +40,7 @@ const TripDetails = (props) => {
                         <p>Car Rental: </p>
                     </div>
                     <div className="buttons">
-                        <button className="waves-effect waves-light btn">Edit</button> &nbsp;
-                        <button className="waves-effect waves-light btn">Delete</button>
+                        <button className="waves-effect waves-light btn">Edit</button>
                     </div>
                     <div className="card-action grey lighten-4 grey-text">
                         <div>Created by {trip.authorFirstName} {trip.authorLastName} on {moment(trip.createdAt.toDate()).format("dddd, MMMM Do YYYY")}</div>

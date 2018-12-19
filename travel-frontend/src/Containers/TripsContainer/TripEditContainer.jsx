@@ -1,4 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { compose } from 'redux';
+import { Redirect } from 'react-router-dom';
 // import { editTrip } from '../../store/actions/tripActions'
 
 class editTrips extends Component {
@@ -64,4 +68,14 @@ class editTrips extends Component {
     }
 }
 
-export default editTrips;
+const mapStateToProps = (state, ownProps) => {
+    const id = ownProps.match.params.id;
+    const trips = state.firestore.data.trips;
+    const trip = trips ? trips[id] : null
+    return {
+        trip: trip,
+        auth: state.firebase.auth
+    }
+}
+
+export default compose(connect(null, mapStateToProps), firestoreConnect([{ collection: 'trips' }]))(editTrips);

@@ -18,13 +18,14 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={Dashboard} />
-            <Route path="/trip/:id" component={TripDetails} />
             <Route path="/login" component={LoginContainer} />
             <Route path="/register" component={RegisterContainer} />
             <Route path="/create" component={TripCreate} />
+            <Route path="/trip/:id" component={TripDetails} />
+            <Route path="/trip/:id/edit" component={TripEdit} />
             <Route path="/user" component={UserMain} />
             <Route path="/user/edit" component={UserEdit} />
-            <Route path="/trip/:id/edit" component={TripEdit} />
+
           </Switch>
         </div>
       </BrowserRouter>
